@@ -706,16 +706,21 @@
   }
   .gb-row{
     display:flex;
+    align-items:stretch;
     gap:8px;
-    margin-bottom:8px;
+    margin-bottom:10px;
   }
   .gb-form input[type="text"],
   .gb-form input[type="password"],
   .gb-form textarea{
+    display:block;
     width:100%;
+    min-width:0;
+    height:44px;
+    box-sizing:border-box;
     border:1px solid var(--line);
     border-radius:3px;
-    padding:10px 12px;
+    padding:0 12px;
     font-size:13px;
     font-family:'Noto Sans KR',sans-serif;
     color:var(--ink);
@@ -725,15 +730,21 @@
     outline:none;
   }
   .gb-form input::placeholder,
-  .gb-form textarea::placeholder{color:#b7ab9b;}
+  .gb-form textarea::placeholder{
+    color:#b7ab9b;
+    font-size:13px;
+  }
   .gb-form textarea{
+    height:auto;
     resize:none;
     min-height:70px;
+    padding:10px 12px;
     line-height:1.6;
     margin-bottom:10px;
   }
-  .gb-name{flex:1;}
-  .gb-pw{width:96px; flex:none;}
+  .gb-name{flex:1.4;}
+  .gb-pw{flex:1; min-width:0;}
+  .gb-pw::placeholder{font-size:12px;}
   .gb-submit{
     width:100%;
     border:1px solid var(--ink);
@@ -805,6 +816,248 @@
     text-align:center;
     padding:20px 0;
   }
+
+  /* ---------- rsvp popup modal ---------- */
+  .rsvp-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(58,46,40,0.55);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:999;
+    opacity:0;
+    visibility:hidden;
+    transition:opacity .3s ease;
+  }
+  .rsvp-overlay.open{opacity:1; visibility:visible;}
+  .rsvp-modal{
+    position:relative;
+    width:100%;
+    max-width:360px;
+    max-height:88vh;
+    overflow-y:auto;
+    background:var(--ivory);
+    border-radius:10px;
+    padding:34px 28px 28px;
+    text-align:center;
+    box-shadow:0 12px 40px rgba(0,0,0,0.25);
+    transform:translateY(14px) scale(0.98);
+    transition:transform .3s ease;
+  }
+  .rsvp-overlay.open .rsvp-modal{transform:translateY(0) scale(1);}
+  .rsvp-close{
+    position:absolute;
+    top:16px; right:16px;
+    width:26px; height:26px;
+    border:none;
+    background:none;
+    color:var(--ink-soft);
+    cursor:pointer;
+    padding:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .rsvp-close svg{width:18px;height:18px;}
+  .rsvp-title{
+    font-family:'Noto Serif KR',serif;
+    font-weight:500;
+    font-size:18px;
+    color:var(--ink);
+    margin:0 0 16px;
+  }
+  .rsvp-icons{
+    display:flex;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:18px;
+    color:var(--gold);
+  }
+  .rsvp-icons svg{width:26px;height:26px;}
+  .rsvp-desc{
+    font-size:13px;
+    line-height:1.85;
+    color:var(--ink-soft);
+    font-weight:300;
+    margin-bottom:22px;
+  }
+  .rsvp-info-box{
+    text-align:left;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+    padding:16px 4px;
+    margin-bottom:22px;
+  }
+  .rsvp-info-row{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:13px;
+    color:var(--ink);
+    padding:5px 0;
+  }
+  .rsvp-info-row svg{width:16px;height:16px;color:var(--gold); flex-shrink:0;}
+  .rsvp-actions{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  .rsvp-skip{
+    flex:none;
+    border:none;
+    background:none;
+    color:var(--ink-soft);
+    font-size:12.5px;
+    text-decoration:underline;
+    cursor:pointer;
+    padding:12px 0;
+    font-family:'Noto Sans KR',sans-serif;
+    white-space:nowrap;
+  }
+  .rsvp-primary{
+    flex:1;
+    border:1px solid var(--ink);
+    background:var(--ink);
+    color:#fff;
+    padding:13px 0;
+    font-size:13.5px;
+    letter-spacing:0.04em;
+    border-radius:3px;
+    cursor:pointer;
+    font-family:'Noto Sans KR',sans-serif;
+    -webkit-appearance:none;
+    appearance:none;
+  }
+  .rsvp-primary:active{opacity:0.85;}
+  .rsvp-step2{text-align:left;}
+  .rsvp-step2 .rsvp-title,
+  .rsvp-step2 .rsvp-desc{text-align:center;}
+  .rsvp-attend-row{
+    display:flex;
+    gap:10px;
+    margin-bottom:22px;
+  }
+  .rsvp-attend-btn{
+    flex:1;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:6px;
+    border:1px solid var(--line);
+    background:var(--paper);
+    color:var(--ink-soft);
+    padding:12px 0;
+    font-size:13.5px;
+    border-radius:3px;
+    cursor:pointer;
+    font-family:'Noto Sans KR',sans-serif;
+    -webkit-appearance:none;
+    appearance:none;
+  }
+  .rsvp-attend-btn svg{width:15px;height:15px;}
+  .rsvp-attend-btn.active{
+    border-color:var(--wine);
+    color:var(--wine);
+    background:rgba(107,46,58,0.06);
+    font-weight:500;
+  }
+  .rsvp-field-label{
+    font-size:12.5px;
+    color:var(--ink-soft);
+    margin:18px 0 8px;
+  }
+  .rsvp-field-label-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin:18px 0 8px;
+  }
+  .rsvp-field-label-row .rsvp-field-label{margin:0;}
+  .rsvp-side-radio{
+    display:flex;
+    gap:12px;
+    font-size:12px;
+    color:var(--ink-soft);
+  }
+  .rsvp-side-radio label{
+    display:flex;
+    align-items:center;
+    gap:4px;
+    cursor:pointer;
+  }
+  .rsvp-side-radio input{accent-color:var(--wine); margin:0;}
+  .rsvp-modal input[type="text"],
+  .rsvp-modal input[type="tel"]{
+    display:block;
+    width:100%;
+    height:44px;
+    box-sizing:border-box;
+    border:1px solid var(--line);
+    border-radius:3px;
+    padding:0 12px;
+    font-size:13px;
+    font-family:'Noto Sans KR',sans-serif;
+    color:var(--ink);
+    background:var(--paper);
+    -webkit-appearance:none;
+    appearance:none;
+    outline:none;
+  }
+  .rsvp-modal input::placeholder{color:#b7ab9b; font-size:12.5px;}
+  .rsvp-stepper{
+    display:flex;
+    align-items:center;
+    gap:16px;
+  }
+  .rsvp-stepper button{
+    width:32px; height:32px;
+    border:1px solid var(--line);
+    background:var(--paper);
+    color:var(--ink);
+    font-size:16px;
+    border-radius:50%;
+    cursor:pointer;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:'Noto Sans KR',sans-serif;
+    -webkit-appearance:none;
+    appearance:none;
+    line-height:1;
+  }
+  .rsvp-stepper button:active{background:var(--line);}
+  .rsvp-stepper span{
+    font-size:14px;
+    color:var(--ink);
+    min-width:20px;
+    text-align:center;
+  }
+  .rsvp-submit{
+    display:block;
+    width:100%;
+    margin-top:26px;
+    border:1px solid var(--ink);
+    background:var(--ink);
+    color:#fff;
+    padding:13px 0;
+    font-size:13.5px;
+    letter-spacing:0.04em;
+    border-radius:3px;
+    cursor:pointer;
+    font-family:'Noto Sans KR',sans-serif;
+    -webkit-appearance:none;
+    appearance:none;
+  }
+  .rsvp-submit:active{opacity:0.85;}
+  .rsvp-status{
+    font-size:11.5px;
+    color:var(--ink-soft);
+    margin-top:10px;
+    text-align:center;
+    min-height:14px;
+  }
   .gb-more{
     display:block;
     margin:18px auto 0;
@@ -820,6 +1073,87 @@
 </style>
 </head>
 <body>
+
+<!-- ============ RSVP POPUP MODAL ============ -->
+<div class="rsvp-overlay" id="rsvp-overlay">
+  <div class="rsvp-modal">
+
+    <!-- step 1: 안내 -->
+    <div class="rsvp-step" id="rsvp-step1">
+      <button class="rsvp-close" onclick="closeRsvpModal()" aria-label="닫기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <h3 class="rsvp-title">참석 의사 전달</h3>
+      <div class="rsvp-icons">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3.5"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="9" cy="8" r="3.5"/><path d="M2 20c0-4.4 3.1-7 7-7s7 2.6 7 7"/><path d="M16 13.5c3 .4 5 2.7 5 6.5"/><path d="M15.5 7.5 18 10l4-4.5"/></svg>
+      </div>
+      <p class="rsvp-desc">특별한 날 축하의 마음으로 참석해주시는 모든 분들을 한 분 한 분 더욱 귀하게 모실 수 있도록, 아래 버튼으로 신랑 &amp; 신부에게 꼭 참석여부 전달을 부탁드립니다.</p>
+      <div class="rsvp-info-box">
+        <div class="rsvp-info-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg>
+          2026.11.07 (토) 오후 4시
+        </div>
+        <div class="rsvp-info-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M3 11 12 4l9 7"/><path d="M5 10v10h14V10"/></svg>
+          대홍관
+        </div>
+        <div class="rsvp-info-row">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          청룡마을길 14
+        </div>
+      </div>
+      <div class="rsvp-actions">
+        <button class="rsvp-skip" onclick="skipRsvpToday()">오늘 하루 보지 않기</button>
+        <button class="rsvp-primary" onclick="showRsvpStep2()">참석의사 전달하기</button>
+      </div>
+    </div>
+
+    <!-- step 2: 참석 정보 입력 -->
+    <div class="rsvp-step rsvp-step2" id="rsvp-step2" style="display:none;">
+      <button class="rsvp-close" onclick="closeRsvpModal()" aria-label="닫기">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+      <h3 class="rsvp-title">참석 의사 전달</h3>
+      <p class="rsvp-desc">원활한 예식 진행을 위해 참석 정보를<br>미리 알려주시면 감사하겠습니다.</p>
+
+      <div class="rsvp-attend-row">
+        <button type="button" class="rsvp-attend-btn active" id="rsvp-attend-yes" onclick="setRsvpAttend(true)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.5"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+          가능
+        </button>
+        <button type="button" class="rsvp-attend-btn" id="rsvp-attend-no" onclick="setRsvpAttend(false)">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="8" r="3.5"/><path d="M4 20c0-4.4 3.6-7 8-7s8 2.6 8 7"/><path d="m7 16 10 6M17 16 7 22"/></svg>
+          불가
+        </button>
+      </div>
+
+      <div class="rsvp-field-label-row">
+        <span class="rsvp-field-label">성함</span>
+        <span class="rsvp-side-radio">
+          <label><input type="radio" name="rsvp-side" value="groom" checked> 신랑측</label>
+          <label><input type="radio" name="rsvp-side" value="bride"> 신부측</label>
+        </span>
+      </div>
+      <input type="text" id="rsvp-name" placeholder="성함을 입력해 주세요." maxlength="20">
+
+      <div class="rsvp-field-label">연락처</div>
+      <input type="tel" id="rsvp-phone" placeholder="참석자 대표 연락처를 입력해 주세요." maxlength="20">
+
+      <div class="rsvp-field-label">추가인원</div>
+      <div class="rsvp-stepper">
+        <button type="button" onclick="rsvpChangeGuests(-1)" aria-label="감소">−</button>
+        <span id="rsvp-guests">0</span>
+        <button type="button" onclick="rsvpChangeGuests(1)" aria-label="증가">+</button>
+      </div>
+
+      <button class="rsvp-submit" onclick="submitRsvp()">전달하기</button>
+      <div class="rsvp-status" id="rsvp-status"></div>
+    </div>
+
+  </div>
+</div>
+
 <div class="card">
 
   <!-- ============ COVER ============ -->
@@ -1062,8 +1396,8 @@
 
     <div class="gb-form">
       <div class="gb-row">
-        <input type="text" id="gb-name" class="gb-name" placeholder="이름" maxlength="6">
-        <input type="password" id="gb-pw" class="gb-pw" placeholder="비밀번호 4자리" maxlength="4" inputmode="numeric">
+        <input type="text" id="gb-name" class="gb-name" placeholder="이름" maxlength="12">
+        <input type="password" id="gb-pw" class="gb-pw" placeholder="비밀번호(4자리)" maxlength="4" inputmode="numeric">
       </div>
       <textarea id="gb-msg" placeholder="따뜻한 축하 메시지를 남겨주세요 :)" maxlength="300"></textarea>
       <button class="gb-submit" onclick="submitGuestbookEntry()">방명록 남기기</button>
