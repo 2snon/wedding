@@ -343,12 +343,17 @@
     letter-spacing:0.06em;
     color:var(--wine);
     margin-bottom:4px;
+    font-variant-numeric:lining-nums;
+    font-feature-settings:'lnum' 1, 'onum' 0;
   }
   .wedding-date-sub{
+    font-family:'Playfair Display',serif;
     font-size:12px;
     letter-spacing:0.15em;
     color:var(--ink-soft);
     margin-bottom:30px;
+    font-variant-numeric:lining-nums;
+    font-feature-settings:'lnum' 1, 'onum' 0;
   }
   table.cal{
     width:100%;
@@ -474,6 +479,13 @@
   .parking{
     margin-top:26px;
     text-align:left;
+  }
+  .parking .p-title{
+    font-family:'Noto Serif KR',serif;
+    font-size:13.5px;
+    color:var(--ink);
+    margin-bottom:8px;
+    text-align:center;
   }
   .parking .p-label{
     font-family:'Noto Serif KR',serif;
@@ -1336,6 +1348,7 @@
     </button>
 
     <div class="parking">
+      <div class="p-title">주차 안내</div>
       <div class="p-label">예식장 내 주차공간이 없어<br>인근 공영주차장을 이용해 주세요</div>
       <div class="nav-hint">원하시는 앱을 선택하시면 길안내가 시작됩니다.</div>
 
