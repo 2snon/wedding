@@ -42,8 +42,9 @@
     padding:64px 32px;
     text-align:center;
     opacity:0;
-    transform:translateY(18px);
-    transition:opacity .9s ease, transform .9s ease;
+    transform:translateY(30px);
+    transition:opacity 1.15s cubic-bezier(0.19,1,0.22,1), transform 1.15s cubic-bezier(0.19,1,0.22,1);
+    will-change:opacity, transform;
   }
   .section.in-view{opacity:1; transform:translateY(0);}
   .eyebrow{
@@ -168,6 +169,10 @@
     letter-spacing:0.14em;
     color:var(--ink-soft);
     margin-bottom:14px;
+  }
+  .cover-datetime .dt-caps{
+    font-size:0.86em;
+    letter-spacing:0.1em;
   }
   .cover-venue{
     display:flex;
@@ -1172,26 +1177,27 @@
   <section class="cover">
     <div class="cover-photo">
       <div class="cover-eyebrow">Wedding Invitation</div>
-      <img src="images/cover-photo.heic" alt="커버 사진" style="width:100%;height:100%;object-fit:cover;">
+      <div class="cover-photo-label">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="5" width="18" height="14" rx="1"/><circle cx="8.5" cy="10" r="1.5"/><path d="M21 16l-5.5-5.5L3 19"/></svg>
+        사진을 준비 중입니다
+      </div>
     </div>
     <div class="cover-info">
       <div class="cover-row">
-        <span class="cover-name-side">박소윤</span>
-        <div class="cover-date-frac"><span>11</span><span class="frac-line"></span><span>7</span></div>
         <span class="cover-name-side">이준원</span>
+        <div class="cover-date-frac"><span>11</span><span class="frac-line"></span><span>7</span></div>
+        <span class="cover-name-side">박소윤</span>
       </div>
-      <div class="cover-datetime">2026. 11. 7 SAT · PM 4:00</div>
+      <div class="cover-datetime">2026. 11. 7 <span class="dt-caps">SAT</span> · <span class="dt-caps">PM</span> 4:00</div>
       <div class="cover-venue">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21s7-7.2 7-12a7 7 0 1 0-14 0c0 4.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>
         대홍관
       </div>
       <div class="cover-divider"></div>
-      <svg class="knot" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M50 10 C20 10 20 40 50 40 C80 40 80 10 50 10Z" stroke="#B08D57" stroke-width="2"/>
-        <path d="M50 90 C20 90 20 60 50 60 C80 60 80 90 50 90Z" stroke="#B08D57" stroke-width="2"/>
-        <path d="M35 40 C35 55 35 45 35 60" stroke="#B08D57" stroke-width="2"/>
-        <path d="M65 40 C65 55 65 45 65 60" stroke="#B08D57" stroke-width="2"/>
-        <circle cx="50" cy="50" r="4" fill="#B08D57"/>
+      <svg class="knot" viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 62 C18 42 6 26 18 12 C26 4 38 8 50 20 C62 8 74 4 82 12 C94 26 82 42 50 62 Z" stroke="#B08D57" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M50 62 C36 68 22 64 10 72 C3 77 4 84 12 82 C17 80 14 75 8 77" stroke="#B08D57" stroke-width="1.8" stroke-linecap="round"/>
+        <path d="M50 62 C64 68 78 64 90 72 C97 77 96 84 88 82 C83 80 86 75 92 77" stroke="#B08D57" stroke-width="1.8" stroke-linecap="round"/>
       </svg>
     </div>
   </section>
@@ -1468,12 +1474,10 @@
 
   <!-- ============ CLOSING ============ -->
   <section class="section closing" id="sec-closing">
-    <svg class="knot" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <path d="M50 10 C20 10 20 40 50 40 C80 40 80 10 50 10Z" stroke="#B08D57" stroke-width="2"/>
-      <path d="M50 90 C20 90 20 60 50 60 C80 60 80 90 50 90Z" stroke="#B08D57" stroke-width="2"/>
-      <path d="M35 40 C35 55 35 45 35 60" stroke="#B08D57" stroke-width="2"/>
-      <path d="M65 40 C65 55 65 45 65 60" stroke="#B08D57" stroke-width="2"/>
-      <circle cx="50" cy="50" r="4" fill="#B08D57"/>
+    <svg class="knot" viewBox="0 0 100 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M50 62 C18 42 6 26 18 12 C26 4 38 8 50 20 C62 8 74 4 82 12 C94 26 82 42 50 62 Z" stroke="#B08D57" stroke-width="1.8" stroke-linejoin="round" stroke-linecap="round"/>
+      <path d="M50 62 C36 68 22 64 10 72 C3 77 4 84 12 82 C17 80 14 75 8 77" stroke="#B08D57" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M50 62 C64 68 78 64 90 72 C97 77 96 84 88 82 C83 80 86 75 92 77" stroke="#B08D57" stroke-width="1.8" stroke-linecap="round"/>
     </svg>
     <p>
       함께해 주시는 모든 걸음이<br>
