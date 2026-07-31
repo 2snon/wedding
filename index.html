@@ -326,8 +326,14 @@
     opacity:0;
     transform:translateY(46px);
     transition:opacity .7s ease, transform .7s ease;
+    font-variant-numeric:lining-nums;
+    font-feature-settings:'lnum' 1, 'onum' 0;
   }
   .wedding-day-hero.in-view .wd-digit{opacity:1; transform:translateY(0);}
+  .wd-digit.wd-num{
+    font-size:1em;
+    vertical-align:baseline;
+  }
 
   /* ---------- calendar / countdown ---------- */
   .wedding-date-big{
@@ -1224,10 +1230,10 @@
   <!-- ============ WEDDING DAY BIG REVEAL ============ -->
   <section class="section wedding-day-hero" id="sec-wedding-day">
     <div class="wd-big-line" style="opacity:1; transform:none; transition:none;">
-      <span class="wd-digit" style="transition-delay:.3s;">NOV</span> <span class="wd-digit" style="transition-delay:.45s;">7</span>
+      <span class="wd-digit" style="transition-delay:.3s;">NOV</span> <span class="wd-digit wd-num" style="transition-delay:.45s;">7</span>
     </div>
     <div class="wd-big-line" style="opacity:1; transform:none; transition:none;">
-      <span class="wd-digit" style="transition-delay:.7s;">2</span><span class="wd-digit" style="transition-delay:.85s;">0</span><span class="wd-digit" style="transition-delay:1s;">2</span><span class="wd-digit" style="transition-delay:1.15s;">6</span>
+      <span class="wd-digit wd-num" style="transition-delay:.7s;">2</span><span class="wd-digit wd-num" style="transition-delay:.85s;">0</span><span class="wd-digit wd-num" style="transition-delay:1s;">2</span><span class="wd-digit wd-num" style="transition-delay:1.15s;">6</span>
     </div>
   </section>
 
