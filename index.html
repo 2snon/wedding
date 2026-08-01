@@ -1537,11 +1537,6 @@ table.cal td.the-day span{
         <input type="text" id="rsvpName" placeholder="성함을 입력해 주세요." maxlength="20">
       </div>
 
-      <div class="rsvp-field">
-        <div class="rsvp-field-label"><span>연락처</span></div>
-        <input type="tel" id="rsvpContact" placeholder="참석자 대표 연락처를 입력해 주세요." maxlength="20">
-      </div>
-
       <div class="rsvp-field" id="rsvpGuestsField">
         <div class="rsvp-field-label"><span>추가인원 (본인 제외)</span></div>
         <div class="rsvp-stepper">
@@ -1895,7 +1890,6 @@ table.cal td.the-day span{
     const side = document.querySelector('input[name="rsvpSide"]:checked').value;
 
     if(!name){ statusEl.textContent = '성함을 입력해주세요.'; return; }
-    if(!contact){ statusEl.textContent = '연락처를 입력해주세요.'; return; }
 
     statusEl.textContent = '전달 중...';
     fetch(GAS_URL, {
