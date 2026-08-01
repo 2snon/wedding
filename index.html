@@ -1884,9 +1884,7 @@ table.cal td.the-day span{
       return;
     }
     const nameEl = document.getElementById('rsvpName');
-    const contactEl = document.getElementById('rsvpContact');
     const name = nameEl.value.trim();
-    const contact = contactEl.value.trim();
     const side = document.querySelector('input[name="rsvpSide"]:checked').value;
 
     if(!name){ statusEl.textContent = '성함을 입력해주세요.'; return; }
@@ -1899,12 +1897,10 @@ table.cal td.the-day span{
         attend: rsvpAttend ? '참석' : '불참',
         side: side,
         name: name,
-        contact: contact,
         guests: rsvpAttend ? rsvpGuests : 0
       })
     }).then(function(){
       nameEl.value = '';
-      contactEl.value = '';
       showRsvpStep('rsvpStepDone');
     }).catch(function(err){
       console.error(err);
