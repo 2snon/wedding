@@ -1620,6 +1620,7 @@ table.cal td.the-day span{
 
   function openTmap(name, lon, lat){
     const tmapUrl = 'tmap://route?rGoName=' + encodeURIComponent(name) + '&rGoX=' + lon + '&rGoY=' + lat;
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
     const fallbackUrl = isIOS
       ? 'https://apps.apple.com/kr/app/id431589174'
       : 'https://play.google.com/store/apps/details?id=com.skt.tmap.ku';
