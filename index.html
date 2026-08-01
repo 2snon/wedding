@@ -1590,7 +1590,6 @@ table.cal td.the-day span{
 
   function openNaverMap(name, lat, lng){
     const nmapUrl = 'nmap://place?lat=' + lat + '&lng=' + lng + '&name=' + encodeURIComponent(name) + '&appname=com.wedding.invitation';
-    const fallbackUrl = 'https://map.naver.com/p/search/' + encodeURIComponent(name);
     let didHide = false;
     const onVisibilityChange = function(){ if(document.hidden){ didHide = true; } };
     document.addEventListener('visibilitychange', onVisibilityChange);
@@ -1602,11 +1601,7 @@ table.cal td.the-day span{
   }
 
   function openTmap(name, lon, lat){
-    const tmapUrl = 'tmap://route?rGoName=' + encodeURIComponent(name) + '&rGoX=' + lon + '&rGoY=' + lat;
-    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
-    const fallbackUrl = isIOS
-      ? 'https://apps.apple.com/kr/app/id431589174'
-      : 'https://play.google.com/store/apps/details?id=com.skt.tmap.ku';
+    const tmapUrl = 'tmap://route?rGoName=' + lat + '&lng=' + lng + '&name=' + encodeURIComponent(name) + '&appname=com.wedding.invitation';
     let didHide = false;
     const onVisibilityChange = function(){ if(document.hidden){ didHide = true; } };
     document.addEventListener('visibilitychange', onVisibilityChange);
