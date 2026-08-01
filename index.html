@@ -1618,9 +1618,9 @@ table.cal td.the-day span{
     }, 1200);
   }
 
-  function openTmap(name, lon, lat) {
+    function openTmap(name, lon, lat) {
 
-  const tmapUrl =
+    const tmapUrl =
 
     'tmap://route?' +
 
@@ -1633,6 +1633,20 @@ table.cal td.the-day span{
     '&reqCoordType=WGS84GEO' +
 
     '&resCoordType=WGS84GEO';
+
+    const isIOS = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+    const fallbackUrl = isIOS
+
+     ? 'https://apis.openapi.sk.com/tmap/app/routes?appKey=YOUR_APP_KEY&name=' +
+
+      encodeURIComponent(name) +
+
+      '&lon=' + lon +
+
+      '&lat=' + lat
+
+    : 'https://play.google.com/store/apps/details?id=com.skt.tmap.ku';
     let didHide = false;
     const onVisibilityChange = function(){ if(document.hidden){ didHide = true; } };
     document.addEventListener('visibilitychange', onVisibilityChange);
